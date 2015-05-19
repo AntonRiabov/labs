@@ -26,5 +26,8 @@
         <module name="cripto" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cripto" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

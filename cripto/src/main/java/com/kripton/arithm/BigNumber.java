@@ -68,9 +68,42 @@ public class BigNumber {
     }
 
     public int[] multiply(int[] result, int resultStart, int[] a, int aStart,int[] b,  int bStart){
-        System.out.println( "dd");
+        long multiplyBuf = 0;
+        long addBuf = 0;
+
+        a = new int[]{1,2,3,4,5,5};
+        b = new int[]{1,2,3,4,5,5};
+        int positionCounter = 0;
+
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0, shift = i; j < a.length; j++) {
+                multiplyBuf = a[ j ] * b[ i ];
+                addBuf = multiplyBuf % MOD;
+
+                addBuf += result[ shift + j ];
+                result[ shift + j ] = (int) (addBuf % MOD);
+
+                addBuf /= MOD;
+                addBuf += multiplyBuf / MOD;
+
+                positionCounter = 1;
+                while (addBuf != 0){
+                    addBuf += result[ shift + j + positionCounter ];
+                    result[ shift + j + positionCounter ] = (int) (addBuf % MOD);
+                    addBuf = addBuf / MOD;
+                    ++positionCounter;
+                }
+            }
+        }
+
         return result;
     }
+
+
+    public int[] sub()
+
+
+
 
 
     private int[] getDigits() {
